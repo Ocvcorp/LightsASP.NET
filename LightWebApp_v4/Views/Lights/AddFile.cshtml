@@ -1,0 +1,28 @@
+﻿@using LightWebApp_v4.Models
+@model Light
+@{
+    ViewBag.Title = "AddFile";
+}
+
+<h2>Добавить файл в @Model.Name</h2>
+
+
+@using (Html.BeginForm("AddFile", "Lights", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">Файл</div>
+        <div class="editor-field">
+            <input type="file" name="postedFile" />
+        </div>
+        <p>
+            <input type="submit" value="Добавить" />
+        </p>
+    </fieldset>
+    @Html.HiddenFor(x => x.LightId)
+}
+
+<div>
+    @Html.ActionLink("К списку файлов", "Files")
+</div>

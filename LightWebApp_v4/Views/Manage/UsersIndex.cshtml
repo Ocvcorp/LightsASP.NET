@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LightWebApp_v4.Models.ApplicationUser>
+@{
+    ViewBag.Title = "UsersIndex";
+}
+
+<h2>Список компаний</h2>
+<p>
+    @Html.ActionLink("К списку проектов","Index","Lights")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Компания")
+        </th>
+        <th>
+            @Html.DisplayName("Контактное лицо")
+        </th>
+        <th>
+            @Html.DisplayName("Email")
+        </th>
+        <th>
+            @Html.DisplayName("Телефон")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Company)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ContactPerson)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PhoneNumber)
+    </td>
+    <td>
+        @Html.ActionLink("Подробнее", "UserDetails", new { Name = item.UserName })
+    </td>
+</tr>
+    }
+
+</table>

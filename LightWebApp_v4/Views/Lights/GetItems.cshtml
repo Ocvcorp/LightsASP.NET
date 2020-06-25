@@ -1,0 +1,7 @@
+﻿@model IEnumerable<LightWebApp_v4.Models.UseField>
+<select id="UseFieldId" name="UseFieldId" class="form-control">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>

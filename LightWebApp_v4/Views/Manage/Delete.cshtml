@@ -1,0 +1,69 @@
+﻿@model LightWebApp_v4.Models.IndexViewModel
+@{ 
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Уверены, что нужно удалить все данные о Заказчике, в том числе привязанные проекты с файлами?</h3>
+<div>
+    <h4>Заказчик</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Компания")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Контактное лицо")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Телефон")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Email")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Проекты")
+        </dt>
+
+        @*foreach (var item in ViewBag.Lights)
+        {
+            <dd>
+                @item.Name
+            </dd>
+
+        }*@
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться в профиль", "Index")
+        </div>
+    }
+</div>

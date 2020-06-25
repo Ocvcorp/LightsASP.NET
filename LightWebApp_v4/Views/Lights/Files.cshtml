@@ -1,0 +1,34 @@
+﻿@using LightWebApp_v4.Models
+@model Light
+@{
+    ViewBag.Title = "Files";
+}
+
+<div>
+    <h4>Проект @Model.Name</h4>
+    <hr />
+    <dl>
+        <dt>Файлы</dt>
+        <dd>
+            @Html.ActionLink("Добавить файл", "AddFile", new { id = Model.LightId });
+        </dd>
+    </dl>
+
+</div>
+<table class="table">
+    @foreach (LightFile file in Model.LightFiles)
+    {
+        <tr>
+            <td>
+                @file.FileName
+            </td>
+            <td>
+                @Html.ActionLink("скачать", "GetFile", new { id = @file.LightFileId })
+            </td>
+        </tr>
+    }
+</table>
+
+<div>
+    @Html.ActionLink("К списку проектов", "Index")
+</div>

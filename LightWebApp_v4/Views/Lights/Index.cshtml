@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LightWebApp_v4.Models.Light>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список проектов</h2>
+
+<p>
+    @Html.ActionLink("Создать новый...", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("admin"))
+        {
+            @Html.ActionLink("К списку компаний", "UsersIndex", "Manage")
+           
+        }
+    }
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Статус")
+        </th>
+        <th>
+            @Html.DisplayName("Состав")
+        </th>
+        <th>
+            @Html.DisplayName("Наименование")
+        </th>
+        <th>
+            @Html.DisplayName("Заказчик")
+        </th>       
+        <th>
+            Файлы
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stage.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectSet.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Company)
+            </td>            
+            <td>
+                @Html.ActionLink("список", "Files", new { id = item.LightId })
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.LightId }) |
+                @Html.ActionLink("Подробнее", "Details", new { id = item.LightId }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.LightId })
+            </td>
+        </tr>
+    }
+
+</table>
